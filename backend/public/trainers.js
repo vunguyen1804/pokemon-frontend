@@ -15,7 +15,6 @@ exports.createTrainer = async (req, res) => {
 
 exports.deleteTrainer = async (req, res) => {
   const { uuid } = req.params;
-  console.log(uuid);
   const query = `DELETE FROM trainers WHERE UUID = "${uuid}"`;
   const data = await database.runQuery(query);
   return res.json({ data: data });

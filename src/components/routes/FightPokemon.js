@@ -7,10 +7,7 @@ const GRASS = "Grass";
 const WATER = "Water";
 
 class FightPokemon extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { firstValue: "", secondValue: "", displayResult: false };
-  }
+  state = { firstValue: "", secondValue: "", displayResult: false };
 
   componentDidMount() {
     this.props.fetchPokemons();
@@ -48,8 +45,6 @@ class FightPokemon extends React.Component {
     this.setState({
       displayResult: firstValue.length !== 0 && secondValue.length !== 0,
     });
-
-    console.log(this.state);
   };
 
   renderPokemons = (setStateValue) => {
@@ -67,6 +62,11 @@ class FightPokemon extends React.Component {
 
   renderOptions() {
     const pokemons = this.props.pokemons[0];
+
+    if (!pokemons.length) {
+      return null;
+    }
+
     const options = pokemons.map((pokemon) => {
       const { ID, Name, Type } = pokemon;
       const value = `${Name}-${Type}`;
